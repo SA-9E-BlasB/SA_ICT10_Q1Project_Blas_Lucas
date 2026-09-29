@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valorcon | Receipt Generator</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+</head>
+<body>
+  <!-- background shapes -->
+  <div class="shard shard-one"></div>
+  <div class="shard shard-two"></div>
+  <div class="shard shard-three"></div>
+
+  <header class="topbar">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">V</span>
+      <span>valorcon</span>
+    </a>
+
+    <!-- page links -->
+    <nav>
+      <a class="active" href="index.html">receipt</a>
+      <a href="sku.html">sku generator</a>
+    </nav>
+  </header>
+
+  <main class="page-wrap">
+    <section class="hero">
+      <p class="eyebrow">valorcon // training + merch</p>
+      <h1>build your loadout.</h1>
+      <p class="hero-text">Pick a coach or merch item, choose the amount, then generate the customer receipt.</p>
+      <div class="hero-line"></div>
+    </section>
+
+    <section class="section-head">
+      <div>
+        <p class="eyebrow">available services</p>
+        <h2>pro coaching sessions</h2>
+      </div>
+      <span class="section-number">01</span>
+    </section>
+
+    <!-- coach cards -->
+    <section class="coach-grid">
+      <article class="coach-card">
+        <span class="card-number">01</span>
+        <img src="https://www.prosettings.gg/wp-content/uploads/2022/08/ardiis-valorant-player-profile-picture.navi_-239x300.webp" alt="coach profile one">
+        <div class="coach-info">
+          <p class="role">duelist // aim</p>
+          <h3>blazeon</h3>
+          <p class="rank">radiant coach</p>
+          <p class="price">₱500 / hour</p>
+          <label class="pick-line"><input type="checkbox" id="coach1" value="500"> add session</label>
+          <label class="hours-label" for="hours1">hours</label>
+          <input class="hours" id="hours1" type="number" min="1" max="10" value="1">
+        </div>
+      </article>
+
+      <article class="coach-card">
+        <span class="card-number">02</span>
+        <img src="https://images.weserv.nl/?url=https%3A%2F%2Fowcdn.net%2Fimg%2F69735f207c9bf.png" alt="coach profile two">
+        <div class="coach-info">
+          <p class="role">sentinel // setups</p>
+          <h3>cypherx</h3>
+          <p class="rank">immortal 3 coach</p>
+          <p class="price">₱450 / hour</p>
+          <label class="pick-line"><input type="checkbox" id="coach2" value="450"> add session</label>
+          <label class="hours-label" for="hours2">hours</label>
+          <input class="hours" id="hours2" type="number" min="1" max="10" value="1">
+        </div>
+      </article>
+
+      <article class="coach-card">
+        <span class="card-number">03</span>
+        <img src="https://images.weserv.nl/?url=https%3A%2F%2Fowcdn.net%2Fimg%2F677fe40edf9da.png" alt="coach profile three">
+        <div class="coach-info">
+          <p class="role">controller // macro</p>
+          <h3>omenly</h3>
+          <p class="rank">immortal 1 coach</p>
+          <p class="price">₱400 / hour</p>
+          <label class="pick-line"><input type="checkbox" id="coach3" value="400"> add session</label>
+          <label class="hours-label" for="hours3">hours</label>
+          <input class="hours" id="hours3" type="number" min="1" max="10" value="1">
+        </div>
+      </article>
+
+      <article class="coach-card">
+        <span class="card-number">04</span>
+        <img src="https://images.weserv.nl/?url=https%3A%2F%2Fowcdn.net%2Fimg%2F6416950ce6638.png" alt="coach profile four">
+        <div class="coach-info">
+          <p class="role">initiator // utility</p>
+          <h3>sovaria</h3>
+          <p class="rank">ascendant 3 coach</p>
+          <p class="price">₱350 / hour</p>
+          <label class="pick-line"><input type="checkbox" id="coach4" value="350"> add session</label>
+          <label class="hours-label" for="hours4">hours</label>
+          <input class="hours" id="hours4" type="number" min="1" max="10" value="1">
+        </div>
+      </article>
+
+      <article class="coach-card">
+        <span class="card-number">05</span>
+        <img src="https://images.weserv.nl/?url=https%3A%2F%2Fowcdn.net%2Fimg%2F62d64d487acee.png" alt="coach profile five">
+        <div class="coach-info">
+          <p class="role">flex // game sense</p>
+          <h3>rookie rae</h3>
+          <p class="rank">diamond 2 coach</p>
+          <p class="price">₱300 / hour</p>
+          <label class="pick-line"><input type="checkbox" id="coach5" value="300"> add session</label>
+          <label class="hours-label" for="hours5">hours</label>
+          <input class="hours" id="hours5" type="number" min="1" max="10" value="1">
+        </div>
+      </article>
+
+      <article class="coach-card">
+        <span class="card-number">06</span>
+        <img src="https://www.prosettings.gg/wp-content/uploads/2023/06/Demon1-valorant-player-profile-picture-nrg.webp" alt="coach profile six">
+        <div class="coach-info">
+          <p class="role">duelist // mechanics</p>
+          <h3>demonstrike</h3>
+          <p class="rank">radiant coach</p>
+          <p class="price">₱500 / hour</p>
+          <label class="pick-line"><input type="checkbox" id="coach6" value="500"> add session</label>
+          <label class="hours-label" for="hours6">hours</label>
+          <input class="hours" id="hours6" type="number" min="1" max="10" value="1">
+        </div>
+      </article>
+    </section>
+
+    <section class="section-head merch-head">
+      <div>
+        <p class="eyebrow">available inventory</p>
+        <h2>valorant merch</h2>
+      </div>
+      <span class="section-number">02</span>
+    </section>
+
+    <!-- merch cards -->
+    <section class="product-grid">
+      <article class="product-card">
+        <span class="card-number">A1</span>
+        <img referrerpolicy="no-referrer" src="https://full.life/cdn/shop/files/Valorant_VCT_25_4.webp?v=1778665080&amp;width=2048" alt="valorant vct jersey">
+        <div class="product-info">
+          <p class="role">apparel</p>
+          <h3>vct jersey</h3>
+          <p class="price">₱1,500</p>
+          <label class="pick-line"><input type="checkbox" id="product1" value="1500"> add item</label>
+          <label class="hours-label" for="qty1">quantity</label>
+          <input class="hours" id="qty1" type="number" min="1" max="99" value="1">
+        </div>
+      </article>
+
+      <article class="product-card">
+        <span class="card-number">G1</span>
+        <img referrerpolicy="no-referrer" src="https://cdn.sanity.io/images/dsfx7636/consumer_products_live/0ece5524a7452dac4707270ce5accca2375db78f-2560x3200.png" alt="valorant mousepad">
+        <div class="product-info">
+          <p class="role">gear</p>
+          <h3>valorant mousepad</h3>
+          <p class="price">₱350</p>
+          <label class="pick-line"><input type="checkbox" id="product2" value="350"> add item</label>
+          <label class="hours-label" for="qty2">quantity</label>
+          <input class="hours" id="qty2" type="number" min="1" max="99" value="1">
+        </div>
+      </article>
+
+      <article class="product-card">
+        <span class="card-number">AC</span>
+        <img referrerpolicy="no-referrer" src="https://merch.riotgames.com/_next/image/?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fdsfx7636%2Fconsumer_products%2F50c71a77e67683d58e8f226e99e837e048f44a46-2560x2560.png%3FaccountingTag%3Dconsumer_products&amp;w=1920&amp;q=75" alt="valorant keychain">
+        <div class="product-info">
+          <p class="role">accessories</p>
+          <h3>valorant keychain</h3>
+          <p class="price">₱250</p>
+          <label class="pick-line"><input type="checkbox" id="product3" value="250"> add item</label>
+          <label class="hours-label" for="qty3">quantity</label>
+          <input class="hours" id="qty3" type="number" min="1" max="99" value="1">
+        </div>
+      </article>
+
+      <article class="product-card">
+        <span class="card-number">C1</span>
+        <img referrerpolicy="no-referrer" src="https://preview.redd.it/agent-27-player-card-striking-distance-codename-glasstech-v0-hhan0alw0l0e1.png?width=1280&amp;format=png&amp;auto=webp&amp;s=80d75738ad833bcf52fd67856678db6267d43d08" alt="valorant agent card">
+        <div class="product-info">
+          <p class="role">collectible</p>
+          <h3>agent card</h3>
+          <p class="price">₱150</p>
+          <label class="pick-line"><input type="checkbox" id="product4" value="150"> add item</label>
+          <label class="hours-label" for="qty4">quantity</label>
+          <input class="hours" id="qty4" type="number" min="1" max="99" value="1">
+        </div>
+      </article>
+    </section>
+
+    <section class="checkout">
+      <div>
+        <p class="eyebrow">order terminal</p>
+        <h2>receipt generator</h2>
+        <p class="small-copy">The selected coaching sessions and merch items will appear in the receipt.</p>
+      </div>
+
+      <div class="checkout-actions">
+        <button py-click="create_receipt">generate receipt</button>
+        <button class="ghost" py-click="clear_receipt">clear</button>
+      </div>
+
+      <div id="receipt_out" class="receipt-out">
+        <p>No order generated yet.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- python logic -->
+  <script type="py">
+from pyscript import document
+
+
+def create_receipt(event):
+    # get coach inputs
+    coach1 = document.getElementById("coach1")
+    coach2 = document.getElementById("coach2")
+    coach3 = document.getElementById("coach3")
+    coach4 = document.getElementById("coach4")
+    coach5 = document.getElementById("coach5")
+    coach6 = document.getElementById("coach6")
+
+    hours1 = document.getElementById("hours1")
+    hours2 = document.getElementById("hours2")
+    hours3 = document.getElementById("hours3")
+    hours4 = document.getElementById("hours4")
+    hours5 = document.getElementById("hours5")
+    hours6 = document.getElementById("hours6")
+
+    # get merch inputs
+    product1 = document.getElementById("product1")
+    product2 = document.getElementById("product2")
+    product3 = document.getElementById("product3")
+    product4 = document.getElementById("product4")
+
+    qty1 = document.getElementById("qty1")
+    qty2 = document.getElementById("qty2")
+    qty3 = document.getElementById("qty3")
+    qty4 = document.getElementById("qty4")
+
+    # same idea as the sample receipt formula
+    subtotal = (
+        float(coach1.value) * coach1.checked * float(hours1.value) +
+        float(coach2.value) * coach2.checked * float(hours2.value) +
+        float(coach3.value) * coach3.checked * float(hours3.value) +
+        float(coach4.value) * coach4.checked * float(hours4.value) +
+        float(coach5.value) * coach5.checked * float(hours5.value) +
+        float(coach6.value) * coach6.checked * float(hours6.value) +
+        float(product1.value) * product1.checked * float(qty1.value) +
+        float(product2.value) * product2.checked * float(qty2.value) +
+        float(product3.value) * product3.checked * float(qty3.value) +
+        float(product4.value) * product4.checked * float(qty4.value)
+    )
+
+    # selected items shown on the receipt
+    lines = ""
+
+    if coach1.checked:
+        lines += f"<div class='receipt-line'><span>Blazeon x {hours1.value} hr</span><span>₱{float(coach1.value) * float(hours1.value):.2f}</span></div>"
+    if coach2.checked:
+        lines += f"<div class='receipt-line'><span>Cypherx x {hours2.value} hr</span><span>₱{float(coach2.value) * float(hours2.value):.2f}</span></div>"
+    if coach3.checked:
+        lines += f"<div class='receipt-line'><span>Omenly x {hours3.value} hr</span><span>₱{float(coach3.value) * float(hours3.value):.2f}</span></div>"
+    if coach4.checked:
+        lines += f"<div class='receipt-line'><span>Sovaria x {hours4.value} hr</span><span>₱{float(coach4.value) * float(hours4.value):.2f}</span></div>"
+    if coach5.checked:
+        lines += f"<div class='receipt-line'><span>Rookie Rae x {hours5.value} hr</span><span>₱{float(coach5.value) * float(hours5.value):.2f}</span></div>"
+    if coach6.checked:
+        lines += f"<div class='receipt-line'><span>Demonstrike x {hours6.value} hr</span><span>₱{float(coach6.value) * float(hours6.value):.2f}</span></div>"
+
+    if product1.checked:
+        lines += f"<div class='receipt-line'><span>VCT Jersey x {qty1.value}</span><span>₱{float(product1.value) * float(qty1.value):.2f}</span></div>"
+    if product2.checked:
+        lines += f"<div class='receipt-line'><span>Valorant Mousepad x {qty2.value}</span><span>₱{float(product2.value) * float(qty2.value):.2f}</span></div>"
+    if product3.checked:
+        lines += f"<div class='receipt-line'><span>Valorant Keychain x {qty3.value}</span><span>₱{float(product3.value) * float(qty3.value):.2f}</span></div>"
+    if product4.checked:
+        lines += f"<div class='receipt-line'><span>Agent Card x {qty4.value}</span><span>₱{float(product4.value) * float(qty4.value):.2f}</span></div>"
+
+    if subtotal == 0:
+        document.getElementById("receipt_out").innerHTML = "<p>Pick at least one coach or merch item first.</p>"
+        return
+
+    # 12% vat
+    tax_rate = 0.12
+    tax = subtotal * tax_rate
+    total = subtotal + tax
+
+    receipt = f"""
+    <div class="receipt-title">valorcon receipt</div>
+    {lines}
+    <div class="receipt-rule"></div>
+    <div class="receipt-line"><span>subtotal</span><span>₱{subtotal:.2f}</span></div>
+    <div class="receipt-line"><span>vat 12%</span><span>₱{tax:.2f}</span></div>
+    <div class="receipt-line total-line"><span>total</span><span>₱{total:.2f}</span></div>
+    """
+
+    document.getElementById("receipt_out").innerHTML = receipt
+
+
+def clear_receipt(event):
+    # reset checkboxes
+    document.getElementById("coach1").checked = False
+    document.getElementById("coach2").checked = False
+    document.getElementById("coach3").checked = False
+    document.getElementById("coach4").checked = False
+    document.getElementById("coach5").checked = False
+    document.getElementById("coach6").checked = False
+    document.getElementById("product1").checked = False
+    document.getElementById("product2").checked = False
+    document.getElementById("product3").checked = False
+    document.getElementById("product4").checked = False
+
+    # reset amounts
+    document.getElementById("hours1").value = "1"
+    document.getElementById("hours2").value = "1"
+    document.getElementById("hours3").value = "1"
+    document.getElementById("hours4").value = "1"
+    document.getElementById("hours5").value = "1"
+    document.getElementById("hours6").value = "1"
+    document.getElementById("qty1").value = "1"
+    document.getElementById("qty2").value = "1"
+    document.getElementById("qty3").value = "1"
+    document.getElementById("qty4").value = "1"
+
+    document.getElementById("receipt_out").innerHTML = "<p>No order generated yet.</p>"
+  </script>
+</body>
+</html>

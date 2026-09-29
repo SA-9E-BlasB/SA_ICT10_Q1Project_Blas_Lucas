@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valorcon | SKU Generator</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+</head>
+<body>
+  <!-- background shapes -->
+  <div class="shard shard-one"></div>
+  <div class="shard shard-two"></div>
+  <div class="shard shard-three"></div>
+
+  <header class="topbar">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">V</span>
+      <span>valorcon</span>
+    </a>
+
+    <!-- page links -->
+    <nav>
+      <a href="index.html">receipt</a>
+      <a class="active" href="sku.html">sku generator</a>
+    </nav>
+  </header>
+
+  <main class="page-wrap sku-page">
+    <section class="hero compact-hero">
+      <p class="eyebrow">valorcon // inventory terminal</p>
+      <h1>sku generator.</h1>
+      <p class="hero-text">Create an 8-character SKU for merch inventory. Coaches use a separate service code.</p>
+      <div class="hero-line"></div>
+    </section>
+
+    <section class="sku-layout">
+      <div class="sku-panel">
+        <span class="section-number">03</span>
+        <p class="eyebrow">stock input</p>
+        <h2>create a code</h2>
+
+        <label for="category">product category</label>
+        <select id="category" py-change="change_category">
+          <option>Apparel</option>
+          <option>Gear</option>
+          <option>Accessories</option>
+          <option>Collectible</option>
+          <option>Coach</option>
+        </select>
+
+        <label for="apparel_name">product name</label>
+        <select id="apparel_name">
+          <option>VCT Jersey</option>
+        </select>
+
+        <select id="gear_name" style="display: none;">
+          <option>Valorant Mousepad</option>
+        </select>
+
+        <select id="accessories_name" style="display: none;">
+          <option>Valorant Keychain</option>
+        </select>
+
+        <select id="collectible_name" style="display: none;">
+          <option>Agent Card</option>
+        </select>
+
+        <select id="coach_name" style="display: none;">
+          <option>Blazeon</option>
+          <option>Cypherx</option>
+          <option>Omenly</option>
+          <option>Sovaria</option>
+          <option>Rookie Rae</option>
+          <option>Demonstrike</option>
+        </select>
+
+        <div id="stock_area">
+          <label for="qty">stock quantity</label>
+          <input id="qty" type="number" min="1" max="99" placeholder="1 to 99">
+        </div>
+
+        <button id="generate_button" py-click="make_sku">generate sku</button>
+        <button class="ghost" py-click="clear_skus">clear list</button>
+      </div>
+
+      <div class="sku-result-panel">
+        <p class="eyebrow">generated code</p>
+        <div id="sku_out" class="big-sku">--------</div>
+        <p id="format_text" class="small-copy">Format: first 3 category letters + first 3 product letters + 2 digit stock quantity.</p>
+
+        <div class="sku-history">
+          <h3>sku history</h3>
+          <ul id="sku_list">
+            <li class="empty-item">No SKU generated yet.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- python logic -->
+  <script type="py">
+from pyscript import document
+
+
+def change_category(event):
+    category = document.getElementById("category").value
+
+    # hide product lists first
+    document.getElementById("apparel_name").style.display = "none"
+    document.getElementById("gear_name").style.display = "none"
+    document.getElementById("accessories_name").style.display = "none"
+    document.getElementById("collectible_name").style.display = "none"
+    document.getElementById("coach_name").style.display = "none"
+
+    # show the matching product list
+    if category == "Apparel":
+        document.getElementById("apparel_name").style.display = "block"
+    elif category == "Gear":
+        document.getElementById("gear_name").style.display = "block"
+    elif category == "Accessories":
+        document.getElementById("accessories_name").style.display = "block"
+    elif category == "Collectible":
+        document.getElementById("collectible_name").style.display = "block"
+    else:
+        document.getElementById("coach_name").style.display = "block"
+
+    # coaches are services, not stock
+    if category == "Coach":
+        document.getElementById("stock_area").style.display = "none"
+        document.getElementById("generate_button").innerText = "generate service code"
+        document.getElementById("format_text").innerText = "Service code only. Product SKUs use category, product name, and stock quantity."
+    else:
+        document.getElementById("stock_area").style.display = "block"
+        document.getElementById("generate_button").innerText = "generate sku"
+        document.getElementById("format_text").innerText = "Format: first 3 category letters + first 3 product letters + 2 digit stock quantity."
+
+
+def make_sku(event):
+    category = document.getElementById("category").value
+
+    # get the product from its category
+    if category == "Apparel":
+        product_name = document.getElementById("apparel_name").value
+    elif category == "Gear":
+        product_name = document.getElementById("gear_name").value
+    elif category == "Accessories":
+        product_name = document.getElementById("accessories_name").value
+    elif category == "Collectible":
+        product_name = document.getElementById("collectible_name").value
+    else:
+        product_name = document.getElementById("coach_name").value
+
+    if category == "Coach":
+        sku = category[:3].upper() + product_name[:3].upper() + "SV"
+        history = sku + " // " + category + " // " + product_name + " // service"
+    else:
+        stock_qty = document.getElementById("qty").value
+
+        if stock_qty == "" or int(stock_qty) < 1 or int(stock_qty) > 99:
+            document.getElementById("sku_out").innerText = "QTY 1-99"
+            return
+
+        # keeps quantity at two digits
+        if int(stock_qty) < 10:
+            stock_qty = "0" + stock_qty
+
+        sku = category[:3].upper() + product_name[:3].upper() + stock_qty
+        history = sku + " // " + category + " // " + product_name + " // stock " + stock_qty
+
+    document.getElementById("sku_out").innerText = sku
+
+    # clear the starting message
+    sku_list = document.getElementById("sku_list")
+    if "No SKU generated yet." in sku_list.innerHTML:
+        sku_list.innerHTML = ""
+
+    sku_list.innerHTML += "<li>" + history + "</li>"
+
+
+def clear_skus(event):
+    document.getElementById("sku_out").innerText = "--------"
+    document.getElementById("sku_list").innerHTML = "<li class='empty-item'>No SKU generated yet.</li>"
+    document.getElementById("qty").value = ""
+
+
+# set starting category
+change_category(None)
+  </script>
+</body>
+</html>
